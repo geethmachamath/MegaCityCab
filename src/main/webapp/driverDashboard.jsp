@@ -6,9 +6,6 @@ if (driver == null || !"driver".equals(driver.getType())) {
     response.sendRedirect("login.jsp");
     return;
 }
-
-// Get the context path dynamically
-String contextPath = request.getContextPath();
 %>
 <!DOCTYPE html>
 <html>
@@ -26,9 +23,9 @@ String contextPath = request.getContextPath();
 <body>
     <h2>Welcome, <%= driver.getName() %></h2>
     <ul>
-        <li><a href="<%= contextPath %>/ViewOrdersServlet">View Orders</a></li>
-        <li><a href="<%= contextPath %>/myDetails.jsp">My Details</a></li>
-        <li><a href="<%= contextPath %>/LogoutServlet">Logout</a></li>
+        <li><a href="ViewOrdersServlet">View Orders</a></li>
+        <li><a href="myDetails.jsp">My Details</a></li>
+        <li><a href="LogoutServlet">Logout</a></li>
     </ul>
 </body>
 </html>

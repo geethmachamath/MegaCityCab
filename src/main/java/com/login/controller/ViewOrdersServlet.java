@@ -71,6 +71,7 @@ public class ViewOrdersServlet extends HttpServlet {
                 System.out.println("  Pickup: " + booking.getPickup());
                 System.out.println("  Drop Location: " + booking.getDropLocation());
                 System.out.println("  Status: " + booking.getStatus());
+                System.out.println("  Total Amount: " + booking.getTotalAmount());
                 System.out.println("  Booked Date: " + booking.getBookedDate());
                 System.out.println("  ---");
             }
