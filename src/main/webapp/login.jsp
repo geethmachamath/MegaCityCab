@@ -4,41 +4,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Login</title>
+    <title>Login - Mega City Cabs</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary-teal: #FF8400;
+            --secondary-teal: #FFA801;
+            --dark-teal: #FF9000;
+            --white: #FFFFFF;
+            --light-bg: #F5F7FA;
+            --soft-gray: #ECEFF1;
+            --dark-gray: #263238;
+            --black: #1A1A1A;
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            background: var(--light-bg);
+            color: var(--dark-gray);
+            line-height: 1.6;
         }
 
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: #000000;
+            color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .logo span {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: var(--white);
+            color: black;
+        }
+
+        /* Login Container */
         .login-container {
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 16px;
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.125);
-            padding: 40px;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 50px;
             width: 100%;
             max-width: 400px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
+            margin: 50px auto;
+            border-left: 6px solid var(--primary-teal);
         }
 
         .login-title {
-            color: white;
+            color: var(--dark-gray);
             text-align: center;
             margin-bottom: 30px;
-            font-size: 2.5em;
-            letter-spacing: -1px;
+            font-size: 2.2rem;
+            font-weight: 600;
         }
 
         .form-group {
@@ -47,72 +114,156 @@
 
         .form-group label {
             display: block;
-            color: white;
+            color: var(--dark-gray);
             margin-bottom: 8px;
-            opacity: 0.8;
+            font-weight: 500;
         }
 
         .form-input {
             width: 100%;
             padding: 12px 15px;
-            border: none;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
+            border: 1px solid var(--soft-gray);
+            background: var(--white);
+            color: var(--dark-gray);
             border-radius: 8px;
             transition: all 0.3s ease;
         }
 
         .form-input:focus {
             outline: none;
-            background: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+            border-color: var(--primary-teal);
+            box-shadow: 0 0 0 3px rgba(255, 132, 0, 0.2);
         }
 
         .submit-btn {
             width: 100%;
             padding: 12px;
-            background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
-            color: white;
+            background: var(--primary-teal);
+            color: var(--white);
             border: none;
-            border-radius: 8px;
+            border-radius: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: bold;
+            font-weight: 600;
         }
 
         .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+            background: var(--dark-teal);
+            transform: scale(1.05);
         }
 
         .register-link {
             text-align: center;
             margin-top: 20px;
-            color: white;
-            opacity: 0.7;
+            color: var(--dark-gray);
         }
 
         .register-link a {
-            color: white;
-            text-decoration: underline;
-            transition: opacity 0.3s ease;
+            color: var(--primary-teal);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
 
         .register-link a:hover {
-            opacity: 0.8;
+            color: var(--dark-teal);
+            text-decoration: underline;
         }
 
         .error-message {
-            background: rgba(255, 0, 0, 0.2);
-            color: white;
+            background: rgba(255, 0, 0, 0.1);
+            color: #d32f2f;
             text-align: center;
             padding: 10px;
-            border-radius: 8px;
+            border-radius: 10px;
             margin-top: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background: black;
+            color: var(--white);
+            padding: 40px 20px;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-teal);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+         .logout-btn {
+            background: var(--primary-teal);
+            color: var(--white);
+            border: none;
+            padding: 12px 40px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: var(--dark-teal);
+            color: var(--white);
+            transform: scale(1.05);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 20px;
+                gap: 20px;
+            }
+
+            .login-container {
+                margin: 20px;
+                padding: 25px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="images/logo.png" alt="Company Logo">
+            
+        </div>
+        <form action="register.jsp" method="post">
+            <button type="submit" class="logout-btn">Register Here</button>
+        </form>
+         
+    </nav>
+
+    <!-- Login Container -->
     <div class="login-container">
         <h2 class="login-title">Welcome Back</h2>
         
@@ -141,5 +292,21 @@
             </div>
         <% } %>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="about.jsp">About Us</a>
+                <a href="contact.jsp">Contact</a>
+                <a href="help.jsp">Help</a>
+                <a href="privacy.jsp">Privacy Policy</a>
+                <a href="terms.jsp">Terms of Service</a>
+            </div>
+            <div class="copyright">
+                © <%= new java.text.SimpleDateFormat("yyyy").format(new java.util.Date()) %> Mega City Cabs. All rights reserved.
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
