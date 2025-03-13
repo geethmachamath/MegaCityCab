@@ -35,7 +35,7 @@ public class BookingServlet extends HttpServlet {
             
             System.out.println("Processing booking: " + name + ", " + email + ", cab: " + cabId);
             
-            // Connect to database
+
             con = DBConnection.getConnection();
             
             // Debug database connection
